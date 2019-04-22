@@ -13,6 +13,10 @@ public class Board {
     public Board(){
         Cells = new CellStatus[X_SIZE][Y_SIZE];
 
+        InitialiseBoard();
+    }
+
+    private void InitialiseBoard(){
         //initialise grid with bombs placed randomly
         for(Integer x=0; x<X_SIZE; x++){
             for(Integer y=0; y<Y_SIZE; y++ ){
@@ -33,23 +37,56 @@ public class Board {
                 bombCount=0;
 
                 //check above
+                if(y!=Y_SIZE-1){
+                    if(Cells[x][y+1] == CellStatus.BOMB)
+                        bombCount++;
+                }
 
                 //check below
+                if(y!=0){
+                    if(Cells[x][y-1] == CellStatus.BOMB)
+                        bombCount++;
+                }
 
                 //check left
+                if(x!=0){
+                    if(Cells[x-1][y] == CellStatus.BOMB)
+                        bombCount++;
+                }
 
                 //check right
+                if(x!=X_SIZE-1){
+                    if(Cells[x+1][y] == CellStatus.BOMB)
+                        bombCount++;
+                }
 
                 //check upper left
+                if(x!=0 && y!=0){
+                    if(Cells[x-1][y-1] == CellStatus.BOMB)
+                        bombCount++;
+                }
 
                 //check upper right
+                if(x!=X_SIZE-1 && y!=0){
+                    if(Cells[x+1][y-1] == CellStatus.BOMB)
+                        bombCount++;
+                }
 
                 //check lower left
+                if(x!=0 && y!=Y_SIZE-1){
+                    if(Cells[x-1][y+1] == CellStatus.BOMB)
+                        bombCount++;
+                }
 
                 //check lower right
+                if(x!=X_SIZE-1 && y!=Y_SIZE-1){
+                    if(Cells[x+1][y+1] == CellStatus.BOMB)
+                        bombCount++;
+                }
+
+                Cells[x][y] = CellStatus.values()[bombCount];
+
             }
         }
-
-
     }
 }

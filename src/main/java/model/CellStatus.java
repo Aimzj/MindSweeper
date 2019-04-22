@@ -1,7 +1,7 @@
 package model;
 
 enum CellStatus {
-    BOMB,
+    EMPTY,
     ONE,
     TWO,
     THREE,
@@ -10,5 +10,5 @@ enum CellStatus {
     SIX,
     SEVEN,
     EIGHT,
-    EMPTY
+    BOMB
 }
