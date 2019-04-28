@@ -22,16 +22,19 @@ class PlayerController {
 
     private final PlayerRepository repository;
 
-    PlayerController(PlayerRepository repository){
+    private final PlayerResourceAssembler assembler;
+
+    PlayerController(PlayerRepository repository,
+                     PlayerResourceAssembler assembler){
         this.repository = repository;
+        this.assembler = assembler;
     }
 
     @GetMapping("/players")
     Resources<Resource<Player>> all(){
+
         List<Resource<Player>> players = repository.findAll().stream()
-                .map(employee -> new Resource<>(employee,
-                        linkTo(methodOn(PlayerController.class).one(employee.getId())).withSelfRel(),
-                        linkTo(methodOn(PlayerController.class).all()).withRel("players")))
+                .map(assembler::toResource)
                 .collect(Collectors.toList());
 
         return new Resources<>(players,
@@ -45,12 +48,11 @@ class PlayerController {
 
     @GetMapping("/players/{id}")
     Resource<Player> one(@PathVariable Long id) {
+
         Player player = repository.findById(id)
                 .orElseThrow(() -> new PlayerNotFoundException(id));
 
-        return new Resource<>(player,
-                linkTo(methodOn(PlayerController.class).one(id)).withSelfRel(),
-                linkTo(methodOn(PlayerController.class).all()).withRel("players"));
+        return assembler.toResource(player);
     }
 
     @PutMapping("/players/{id}")
