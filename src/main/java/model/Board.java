@@ -33,58 +33,62 @@ public class Board {
         Integer bombCount;
         for(Integer x=0; x<X_SIZE; x++){
             for(Integer y=0; y<Y_SIZE; y++ ){
-                //reset bomb count
-                bombCount=0;
+                //if cell isn't a bomb, cell status is updated
+                if (Cells[x][y] != CellStatus.BOMB)
+                {
+                    //reset bomb count
+                    bombCount=0;
 
-                //check above
-                if(y!=Y_SIZE-1){
-                    if(Cells[x][y+1] == CellStatus.BOMB)
-                        bombCount++;
+                    //check above
+                    if(y!=Y_SIZE-1){
+                        if(Cells[x][y+1] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    //check below
+                    if(y!=0){
+                        if(Cells[x][y-1] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    //check left
+                    if(x!=0){
+                        if(Cells[x-1][y] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    //check right
+                    if(x!=X_SIZE-1){
+                        if(Cells[x+1][y] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    //check upper left
+                    if(x!=0 && y!=0){
+                        if(Cells[x-1][y-1] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    //check upper right
+                    if(x!=X_SIZE-1 && y!=0){
+                        if(Cells[x+1][y-1] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    //check lower left
+                    if(x!=0 && y!=Y_SIZE-1){
+                        if(Cells[x-1][y+1] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    //check lower right
+                    if(x!=X_SIZE-1 && y!=Y_SIZE-1){
+                        if(Cells[x+1][y+1] == CellStatus.BOMB)
+                            bombCount++;
+                    }
+
+                    Cells[x][y] = CellStatus.values()[bombCount];
                 }
-
-                //check below
-                if(y!=0){
-                    if(Cells[x][y-1] == CellStatus.BOMB)
-                        bombCount++;
-                }
-
-                //check left
-                if(x!=0){
-                    if(Cells[x-1][y] == CellStatus.BOMB)
-                        bombCount++;
-                }
-
-                //check right
-                if(x!=X_SIZE-1){
-                    if(Cells[x+1][y] == CellStatus.BOMB)
-                        bombCount++;
-                }
-
-                //check upper left
-                if(x!=0 && y!=0){
-                    if(Cells[x-1][y-1] == CellStatus.BOMB)
-                        bombCount++;
-                }
-
-                //check upper right
-                if(x!=X_SIZE-1 && y!=0){
-                    if(Cells[x+1][y-1] == CellStatus.BOMB)
-                        bombCount++;
-                }
-
-                //check lower left
-                if(x!=0 && y!=Y_SIZE-1){
-                    if(Cells[x-1][y+1] == CellStatus.BOMB)
-                        bombCount++;
-                }
-
-                //check lower right
-                if(x!=X_SIZE-1 && y!=Y_SIZE-1){
-                    if(Cells[x+1][y+1] == CellStatus.BOMB)
-                        bombCount++;
-                }
-
-                Cells[x][y] = CellStatus.values()[bombCount];
 
             }
         }
