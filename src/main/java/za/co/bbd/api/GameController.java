@@ -62,8 +62,19 @@ public class GameController {
     }
 
     @PutMapping("{id}/end")
-    public void recordEndDate(@PathVariable("id") Long gameId, GameCheckpoint checkpoint){
-        //todo: make the put request to update the record with end time
+    public ResponseEntity<Game> recordEndDate(@PathVariable("id") Long gameId, GameCheckpoint checkpoint){
+        Optional<Game> opGame = gameRepository.findById(gameId);
+
+        if(opGame != null && opGame.isPresent()){
+            Game game= opGame.get();
+            game.setEndTime(Instant.now());
+            gameRepository.save(game);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        else{
+            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
     }
 }
