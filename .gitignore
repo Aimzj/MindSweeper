@@ -102,3 +102,4 @@ fabric.properties
 .project
 .settings/
 .vscode/
+.sts4-cache
