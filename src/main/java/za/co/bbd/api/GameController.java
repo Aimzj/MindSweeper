@@ -25,12 +25,6 @@ public class GameController {
     @Autowired
     private GameRepository gameRepository;
 
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    }
-
-
     @PostMapping("/start")
     public Long recordStartDate(GameCheckpoint checkpoint){
         try {
