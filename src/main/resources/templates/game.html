@@ -4,14 +4,27 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>MineSweeper</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/board.css">
 </head>
 <body>
     <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">
         <tr th:each="column : ${#numbers.sequence( 0, xsize-1)}">
 
-            <td th:text="${Cells[row][column]}" />
-<!--            <i class="fas fa-bomb" th:if="${Cells[row][column] == -1}"/>-->
-<!--            <i class="far fa-square" th:if="${Cells[row][column] == 0}"/>-->
+            <td><img class="cell" src="images/block.png"/></td>
+
+            <!-- <td th:switch="${Cells[row][column]}">
+                <span th:case="-1"><i class="fas fa-bomb"></i></span>
+                <span th:case="0"><img src="images/block.png"/></span>
+                <span th:case="1">1</span>
+                <span th:case="2">2</span>
+                <span th:case="3">3</span>
+                <span th:case="4">4</span>
+                <span th:case="5">5</span>
+                <span th:case="6">6</span>
+                <span th:case="7">7</span>
+                <span th:case="8">8</span>
+            </td> -->
+
         </tr>
         <br/>
     </span>
