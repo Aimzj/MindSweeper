@@ -1,6 +1,6 @@
 package za.co.bbd.model;
 
-enum CellStatus {
+public enum CellStatus {
     EMPTY,
     ONE,
     TWO,
