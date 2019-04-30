@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import za.co.bbd.db.Game;
 import za.co.bbd.db.GameRepository;
@@ -23,6 +24,12 @@ public class GameController {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+
 
     @PostMapping("/start")
     public Long recordStartDate(GameCheckpoint checkpoint){
