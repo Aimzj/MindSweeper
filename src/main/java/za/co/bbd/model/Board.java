@@ -98,10 +98,10 @@ public class Board {
 
     public void openSpace(int x, int y){
         //TODO: add a variable to check if space has already been opened
-        if(Cells[y][x] == CellStatus.BOMB){
+        if(Cells[y][x] == -1){
             //End Game
         }
-        else if(Cells[y][x] == CellStatus.EMPTY){
+        else if(Cells[y][x] == 0){
             //DisplayBehind
             //Open Neightbours
         }
