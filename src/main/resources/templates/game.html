@@ -10,7 +10,9 @@
     <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">
         <tr th:each="column : ${#numbers.sequence( 0, xsize-1)}">
 
-            <td><img class="cell" src="images/block.png"/></td>
+            <td><img class="cell" src="images/block.png" th:onclick="'
+                alert(\'' + ${Cells[row][column]} + '\');
+                '"/></td>
 
             <!-- <td th:switch="${Cells[row][column]}">
                 <span th:case="-1"><i class="fas fa-bomb"></i></span>
