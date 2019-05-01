@@ -21,7 +21,11 @@ public class BoardController {
     }
 
     @GetMapping("/about")
-    public void about(){    
+    public void About(){    
+    }
+
+    @GetMapping("/highscores")
+    public void Highscores(){    
     }
     
 }
