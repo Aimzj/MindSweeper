@@ -103,6 +103,8 @@ public class Board {
 
     public void openSpace(int x, int y){
         //TODO: add a variable to check if space has already been opened
+        System.out.println(x+"-------------");
+        System.out.println(y+"-------------");
         if(Cells[y][x].getValue() == -1){
             //End Game
         }

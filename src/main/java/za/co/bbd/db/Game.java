@@ -2,30 +2,40 @@ package za.co.bbd.db;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import za.co.bbd.model.Board;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.Instant;
 
-@Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Game {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
+    private String id;
 
     private String username;
 
     private Instant startTime;
 
     private Instant endTime;
+
+    private final Board board;
+
+    public Game()
+    {
+        board = new Board(); 
+    }
+
+    public Game(String username,Instant startInstant)
+    {
+        this.username = username;
+        this.startTime = startInstant;
+        board = new Board(); 
+
+        //save in repo
+
+    }
 }
 
 
