@@ -51,7 +51,7 @@
     </style>
 
 </head>
-<body>
+<body id="theBody">
     <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">
         <tr th:each="column : ${#numbers.sequence( 0, xsize-1)}">
 
