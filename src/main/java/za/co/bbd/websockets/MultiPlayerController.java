@@ -12,6 +12,7 @@ public class MultiPlayerController {
     @MessageMapping("/time")
     @SendTo("/topic/multiplayer")
     public MessageContent greeting(MessageContent message) throws Exception {
+        // Do whatever else is needed before sending data to multiplayer channel
         return message;
     }
 }
