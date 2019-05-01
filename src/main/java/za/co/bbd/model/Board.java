@@ -1,19 +1,17 @@
 package za.co.bbd.model;
 
 import java.util.Random;
-import za.co.bbd.model.CellStatus;
 
 public class Board {
 
-    public Integer[][] Cells;
+    public Cell[][] Cells;
 
     public final Integer X_SIZE = 16;
     public final Integer Y_SIZE = 16;
     final Integer BOMB_CHANCE = 8;
 
     public Board(){
-        Cells = new Integer[X_SIZE][Y_SIZE];
-
+        Cells = new Cell[Y_SIZE][X_SIZE];
         InitialiseBoard();
     }
 
@@ -22,11 +20,18 @@ public class Board {
         for(Integer x=0; x<X_SIZE; x++){
             for(Integer y=0; y<Y_SIZE; y++ ){
                 Random rand = new Random();
-                int cell = rand.nextInt(BOMB_CHANCE);
-                if(cell == 1){
-                    Cells[x][y]= -1;
+                int value = rand.nextInt(BOMB_CHANCE);
+                Cell cell = new Cell();
+                cell.setClicked(false);
+                cell.setValue(value);
+                if(value == 1){
+                    cell.setValue(-1);
+                    Cells[y][x] = cell;
                 }
-                else Cells[x][y]= 0;
+                else{
+                    cell.setValue(0);
+                    Cells[y][x] = cell;
+                }
             }
         }
 
@@ -36,60 +41,60 @@ public class Board {
         for(Integer x=0; x<X_SIZE; x++){
             for(Integer y=0; y<Y_SIZE; y++ ){
                 //if cell isn't a bomb, cell status is updated
-                if (Cells[x][y] != -1)
+                if (Cells[y][x].getValue() != -1)
                 {
                     //reset bomb count
                     bombCount=0;
 
                     //check above
                     if(y!=Y_SIZE-1){
-                        if(Cells[x][y+1] == -1)
+                        if(Cells[y+1][x].getValue() == -1)
                             bombCount++;
                     }
 
                     //check below
                     if(y!=0){
-                        if(Cells[x][y-1] == -1)
+                        if(Cells[y-1][x].getValue() == -1)
                             bombCount++;
                     }
 
                     //check left
                     if(x!=0){
-                        if(Cells[x-1][y] == -1)
+                        if(Cells[y][x-1].getValue() == -1)
                             bombCount++;
                     }
 
                     //check right
                     if(x!=X_SIZE-1){
-                        if(Cells[x+1][y] == -1)
+                        if(Cells[y][x+1].getValue() == -1)
                             bombCount++;
                     }
 
                     //check upper left
                     if(x!=0 && y!=0){
-                        if(Cells[x-1][y-1] == -1)
+                        if(Cells[y-1][x-1].getValue() == -1)
                             bombCount++;
                     }
 
                     //check upper right
                     if(x!=X_SIZE-1 && y!=0){
-                        if(Cells[x+1][y-1] == -1)
+                        if(Cells[y-1][x+1].getValue() == -1)
                             bombCount++;
                     }
 
                     //check lower left
                     if(x!=0 && y!=Y_SIZE-1){
-                        if(Cells[x-1][y+1] == -1)
+                        if(Cells[y+1][x-1].getValue() == -1)
                             bombCount++;
                     }
 
                     //check lower right
                     if(x!=X_SIZE-1 && y!=Y_SIZE-1){
-                        if(Cells[x+1][y+1] == -1)
+                        if(Cells[y+1][x+1].getValue() == -1)
                             bombCount++;
                     }
 
-                    Cells[x][y] = bombCount;
+                    Cells[y][x].setValue(bombCount);
                 }
 
             }
@@ -98,15 +103,18 @@ public class Board {
 
     public void openSpace(int x, int y){
         //TODO: add a variable to check if space has already been opened
-        if(Cells[y][x] == -1){
+        if(Cells[y][x].getValue() == -1){
             //End Game
         }
-        else if(Cells[y][x] == 0){
+        else if(Cells[y][x].getValue() == 0){
             //DisplayBehind
-            //Open Neightbours
+            Cells[y][x].setClicked(true);
+            //Open Neighbours
+            openNeighbours(x,y);
         }
         else{
             //Display behind
+            Cells[y][x].setClicked(true);
         }
     }
 
