@@ -19,4 +19,9 @@ public class BoardController {
 
         return "game";
     }
+
+    @GetMapping("/about")
+    public void about(){    
+    }
+    
 }
