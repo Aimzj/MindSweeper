@@ -1,6 +1,7 @@
 package za.co.bbd.model;
 
 import java.util.Random;
+import za.co.bbd.model.CellStatus;
 
 public class Board {
 
@@ -94,4 +95,34 @@ public class Board {
             }
         }
     }
+
+    public void openSpace(int x, int y){
+        //TODO: add a variable to check if space has already been opened
+        if(Cells[y][x] == CellStatus.BOMB){
+            //End Game
+        }
+        else if(Cells[y][x] == CellStatus.EMPTY){
+            //DisplayBehind
+            //Open Neightbours
+        }
+        else{
+            //Display behind
+        }
+    }
+
+    public void openNeighbours(int x,int y){
+
+        for(int i = -1;i<2;i++){
+            for(int j = -1;j<2;j++){
+
+                //Check if within bounds
+                if(x+i>0 && x+i<X_SIZE){
+                    if(y+j>0 && y+j<Y_SIZE){
+                        openSpace(x+i,y+j);
+                    }
+                }
+            }
+        }
+    }
+
 }
