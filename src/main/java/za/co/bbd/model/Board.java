@@ -105,19 +105,24 @@ public class Board {
         //TODO: add a variable to check if space has already been opened
         System.out.println(x+"-------------");
         System.out.println(y+"-------------");
-        if(Cells[y][x].getValue() == -1){
-            //End Game
+        if(!Cells[y][x].isClicked())
+        {
+            if(Cells[y][x].getValue() == -1){
+                //End Game
+                Cells[y][x].setClicked(true);
+            }
+            else if(Cells[y][x].getValue() == 0){
+                //DisplayBehind
+                Cells[y][x].setClicked(true);
+                //Open Neighbours
+                openNeighbours(x,y);
+            }
+            else{
+                //Display behind
+                Cells[y][x].setClicked(true);
+            }
         }
-        else if(Cells[y][x].getValue() == 0){
-            //DisplayBehind
-            Cells[y][x].setClicked(true);
-            //Open Neighbours
-            openNeighbours(x,y);
-        }
-        else{
-            //Display behind
-            Cells[y][x].setClicked(true);
-        }
+
     }
 
     public void openNeighbours(int x,int y){
@@ -126,8 +131,9 @@ public class Board {
             for(int j = -1;j<2;j++){
 
                 //Check if within bounds
-                if(x+i>0 && x+i<X_SIZE){
-                    if(y+j>0 && y+j<Y_SIZE){
+                if(x+i>=0 && x+i<X_SIZE){
+                    if(y+j>=0 && y+j<Y_SIZE){
+                        if(Math.abs(x) != Math.abs(y))
                         openSpace(x+i,y+j);
                     }
                 }
