@@ -11,10 +11,10 @@
 
 </head>
 <body id="theBody" >
-        <p th:text="${isEnd}"></p>
         <p id="idNum" class="invisible" th:text="${id}"></p>
         <span th:if="${isEnd == true}" >
                 <img onload="endGame();" src="/images/block.png" class="invisible"></img>
+                
         </span>
 
     <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">

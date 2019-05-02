@@ -45,43 +45,4 @@ public class GameController {
             throw e;
         }
     }
-
-    
-
-    /*@GetMapping("/")
-    public List<Game> showAllGames(){
-        List<Game> games = new ArrayList<>();
-        Iterable<Game> dbGames = gameRepository.findAll();
-        if(dbGames == null){
-            return games;
-        }
-        dbGames.forEach(games::add);
-        return games;
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Game> showCurrentGame(@PathVariable("id") Long gmaeId){
-        Optional<Game> dbGames = gameRepository.findById(gmaeId);
-        if(dbGames != null && dbGames.isPresent()){
-            return new ResponseEntity<>(dbGames.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PutMapping("{id}/end")
-    public ResponseEntity<Game> recordEndDate(@PathVariable("id") Long gameId, GameCheckpoint checkpoint){
-        Optional<Game> opGame = gameRepository.findById(gameId);
-
-        if(opGame != null && opGame.isPresent()){
-            Game game= opGame.get();
-            game.setEndTime(Instant.now());
-            gameRepository.save(game);
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        else{
-            return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-    }*/
 }

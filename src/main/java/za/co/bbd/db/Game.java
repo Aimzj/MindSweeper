@@ -7,7 +7,6 @@ import za.co.bbd.model.Board;
 
 import java.time.Instant;
 import java.time.Duration;
-
 @Getter
 @Setter
 @AllArgsConstructor
