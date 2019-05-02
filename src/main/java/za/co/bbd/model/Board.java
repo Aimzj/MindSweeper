@@ -8,6 +8,7 @@ public class Board {
 
     public final Integer X_SIZE = 16;
     public final Integer Y_SIZE = 16;
+    public final Integer NUM_BOMBS = 25;
     final Integer BOMB_CHANCE = 8;
 
     public Boolean isEndGame;
@@ -18,24 +19,34 @@ public class Board {
         InitialiseBoard();
     }
 
+    private void SpawnBombs(){
+        //add bombs to board
+        Random rand = new Random();
+        int randomRow = rand.nextInt(Y_SIZE);
+        int randomColumn = rand.nextInt(X_SIZE);
+        for(int i=0; i<NUM_BOMBS; i++){
+
+            while(Cells[randomRow][randomColumn].getValue()== -1){
+                rand = new Random();
+                randomRow = rand.nextInt(Y_SIZE);
+                randomColumn = rand.nextInt(X_SIZE);
+            }
+            Cells[randomRow][randomColumn].setValue(-1);
+        }
+    }
+
     private void InitialiseBoard() {
-        // initialise grid with bombs placed randomly
+        // initialise grid to be all empty
         for (Integer x = 0; x < X_SIZE; x++) {
             for (Integer y = 0; y < Y_SIZE; y++) {
-                Random rand = new Random();
-                int value = rand.nextInt(BOMB_CHANCE);
                 Cell cell = new Cell();
                 cell.setClicked(false);
-                cell.setValue(value);
-                if (value == 1) {
-                    cell.setValue(-1);
-                    Cells[y][x] = cell;
-                } else {
-                    cell.setValue(0);
-                    Cells[y][x] = cell;
-                }
+                cell.setValue(0);
+                Cells[y][x] = cell;
             }
         }
+
+        SpawnBombs();
 
         // move through grid checking for number of bombs surrounding each cell
         // set the cell status accordingly
