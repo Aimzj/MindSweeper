@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MindSweeper</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <style>    
+        .btn-primary {
+            border-radius: 5px;
+            background-color:rgb(5, 226, 255);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: left;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);                
+        }
+
+        div {
+            text-align:center;
+            margin-top: 4%;
+        }
+
+        body {
+            background-color: rgb(53, 53, 53);
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 3%;
+        }
+
+        p {
+            color: white;
+            text-align: center;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+
+<h1>
+    About
+</h1>
+
+<p>
+    We are just a couple of BBD grads trying to find our place in this world/company. 
+    Please enjoy we tried our best and worked very hard.
+</p>
+
+<div class="container">
+        <form  th:action="@{/}">
+            <div class="form-group">
+                </br>
+                </br>
+                <button type="submit" class="btn btn-primary">Back</button>
+            </div>
+        </form>
+        </div>
+
+</body>
+<div class="footer">
+    <p>Made with <span style="color: #e25555;">&hearts;</span> by the MindSweeper team</p>
+</div>
+</html>

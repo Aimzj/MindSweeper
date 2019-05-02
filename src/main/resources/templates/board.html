@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script type="text/javascript" src="/javascript/game.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>MineSweeper</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/board.css">
+
+</head>
+<body id="theBody">
+    <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">
+        <tr th:each="column : ${#numbers.sequence( 0, xsize-1)}">
+            <span th:if="${Cells[row][column].isClicked() == true}">
+                <span th:switch="${Cells[row][column].getValue()}">
+
+                    <td th:case="-1"><img class="cell" src="/images/bomb.png"/></td>
+                    <td th:case="0"><img class="cell" src="/images/block_clicked.png"/></td>
+                    <td th:case="1"><img class="cell" src="/images/one.png"/></td>
+                    <td th:case="2"><img class="cell" src="/images/two.png"/></td>
+                    <td th:case="3"><img class="cell" src="/images/three.png"/></td>
+                    <td th:case="4"><img class="cell" src="/images/four.png"/></td>
+                    <td th:case="5"><img class="cell" src="/images/five.png"/></td>
+                    <td th:case="6"><img class="cell" src="/images/six.png"/></td>
+                    <td th:case="7"><img class="cell" src="/images/seven.png"/></td>
+                    <td th:case="8"><img class="cell" src="/images/eight.png"/></td>
+                </span>
+            </span>
+
+            <td th:unless="${Cells[row][column].isClicked() == true}"><img class="cell" src="/images/block.png" th:onclick="'testFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\');'"/></td>
+
+        </tr>
+        <br/>
+    </span>
+
+</body>
+<div class="footer">
+    <p>Made with <span style="color: #e25555;">&hearts;</span> by the MindSweeper team</p>
+</div>
+</html>

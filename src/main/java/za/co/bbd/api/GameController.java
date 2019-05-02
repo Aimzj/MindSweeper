@@ -3,18 +3,16 @@ package za.co.bbd.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
+import za.co.bbd.db.FakeGameRepository;
 import za.co.bbd.db.Game;
-import za.co.bbd.db.GameRepository;
 import za.co.bbd.model.GameCheckpoint;
 
-import javax.xml.ws.WebServiceException;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("games")
@@ -22,26 +20,29 @@ public class GameController {
     private static final Logger LOG = LoggerFactory.getLogger(GameController.class);
 
     @Autowired
-    private GameRepository gameRepository;
+    private FakeGameRepository gameRepository;
 
-    @PostMapping("/start")
-    public Long recordStartDate(GameCheckpoint checkpoint){
+    //creates game and redirects to /game/{id}
+    @GetMapping("/start")
+    public RedirectView recordStartDate(GameCheckpoint checkpoint){
         try {
             LOG.debug(checkpoint.toString());
 
-            Game game = new Game(null, checkpoint.getUser(), Instant.now(), null);
+            Game game = new Game(checkpoint.getUser(), Instant.now());
 
-            game = gameRepository.save(game);
+            game =gameRepository.save(game);
 
             LOG.info("Date has been saved for user {}", checkpoint.getUser());
-            return game.getId();
+
+            String gameId = game.getId();
+            return new RedirectView("/game/"+ gameId);
         }catch (Exception e){
             LOG.error(e.getMessage(), e);
             throw e;
         }
     }
 
-    @GetMapping("/")
+    /*@GetMapping("/")
     public List<Game> showAllGames(){
         List<Game> games = new ArrayList<>();
         Iterable<Game> dbGames = gameRepository.findAll();
@@ -76,5 +77,5 @@ public class GameController {
             return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-    }
+    }*/
 }

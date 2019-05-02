@@ -56,4 +56,12 @@ target/
 
 .factorypath
 
+*.iml
+
+#VS Code
+.classpath
+.factorypath
+.project
 .settings/
+.vscode/
+.sts4-cache
