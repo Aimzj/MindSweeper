@@ -8,7 +8,7 @@ public class Board {
 
     public final Integer X_SIZE = 16;
     public final Integer Y_SIZE = 16;
-    public final Integer NUM_BOMBS = 25;
+    public final Integer NUM_BOMBS = 5;
     final Integer BOMB_CHANCE = 8;
     final Integer TOTAL_CELLS = X_SIZE*Y_SIZE;
 

@@ -82,7 +82,7 @@ public class BoardController {
     @GetMapping("/highscores")
     public String Highscores(Model model) {
         ArrayList<Game> games = repository.find();
-        games.removeIf(n -> !n.getBoard().isEndGame);
+        games.removeIf(n -> !n.getBoard().hasWonGame);
         Collections.sort(games, new Comparator<Game>() {
             public int compare(Game g1, Game g2) {
                 return (int) (g1.getScore() - g2.getScore());

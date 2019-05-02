@@ -67,6 +67,7 @@
     <a href="/"><button type="submit" class="btn btn-primary">Restart</button></a>
         <th:block th:if="${hasWon==true}">
             <h1 class="gameOver">You Won!</h1>
+            <img onload="endGame();" src="/images/block.png" class="invisible"></img>
         </th:block>
         <th:block th:if="${isEnd==true}">
             <h1 class="gameOver">Game Over, NOOB!</h1>
