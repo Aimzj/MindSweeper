@@ -10,8 +10,11 @@ public class Board {
     public final Integer Y_SIZE = 16;
     final Integer BOMB_CHANCE = 8;
 
+    public Boolean isEndGame;
+
     public Board(){
         Cells = new Cell[Y_SIZE][X_SIZE];
+        isEndGame = false;
         InitialiseBoard();
     }
 
@@ -110,6 +113,8 @@ public class Board {
             if(Cells[y][x].getValue() == -1){
                 //End Game
                 Cells[y][x].setClicked(true);
+                setBombsClicked();
+                isEndGame = true;
             }
             else if(Cells[y][x].getValue() == 0){
                 //DisplayBehind
@@ -136,6 +141,18 @@ public class Board {
                         if(Math.abs(x) != Math.abs(y))
                         openSpace(x+i,y+j);
                     }
+                }
+            }
+        }
+    }
+
+    public void setBombsClicked()
+    {
+        for(Integer x=0; x<X_SIZE; x++){
+            for(Integer y=0; y<Y_SIZE; y++ ) {
+                if(Cells[y][x].getValue() == -1)
+                {
+                    Cells[y][x].isClicked = true;
                 }
             }
         }

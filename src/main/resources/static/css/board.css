@@ -2,6 +2,7 @@
 .cell{
     width: 2%;
     height: auto;
+    cursor: pointer;
 }
 
 .btn-primary {
