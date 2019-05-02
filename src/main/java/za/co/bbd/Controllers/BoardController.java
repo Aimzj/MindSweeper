@@ -27,6 +27,7 @@ public class BoardController {
         model.addAttribute("xsize", board.X_SIZE);
         model.addAttribute("ysize", board.Y_SIZE);
         model.addAttribute("id", game.getId());
+        model.addAttribute("isEnd", board.isEndGame);
 
         model.addAttribute("Cells", board.Cells);
 

@@ -12,10 +12,13 @@
 <body id="theBody">
     <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">
         <tr th:each="column : ${#numbers.sequence( 0, xsize-1)}">
+            
             <span th:if="${Cells[row][column].isClicked() == true}">
                 <span th:switch="${Cells[row][column].getValue()}">
 
-                    <td th:case="-1"><img class="cell" src="/images/bomb.png"/></td>
+                    <td th:case="-1">
+                         <img class="cell" src="/images/bomb.png"/>
+                    </td> 
                     <td th:case="0"><img class="cell" src="/images/block_clicked.png"/></td>
                     <td th:case="1"><img class="cell" src="/images/one.png"/></td>
                     <td th:case="2"><img class="cell" src="/images/two.png"/></td>
@@ -28,12 +31,27 @@
                 </span>
             </span>
 
-            <td th:unless="${Cells[row][column].isClicked() == true}"><img class="cell" src="/images/block.png" th:onclick="'testFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\');'"/></td>
+            <span th:unless="${Cells[row][column].isClicked() == true}">
+                <td th:if="${isEnd == false}">
+                    <img class="cell" src="/images/block.png" th:onclick="'testFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\');'"/>
+                </td>
+                <td th:unless="${isEnd == false}">
+                    <img class="cell" src="/images/block.png"/>
+                </td>
 
+            </span>
+
+<!--            <span th:if="${isEnd == true}">-->
+<!--                <span th:if="${Cells[row][column].getValue() == -1}">-->
+<!--                    <td><img class="cell" src="/images/bomb.png"/></td>-->
+<!--                </span>-->
+<!--            </span>-->
         </tr>
         <br/>
     </span>
-
+    <br>
+    <br>
+    <a href="/games/start"><button type="submit" class="btn btn-primary">Restart</button></a>
 </body>
 <div class="footer">
     <p>Made with <span style="color: #e25555;">&hearts;</span> by the MindSweeper team</p>
