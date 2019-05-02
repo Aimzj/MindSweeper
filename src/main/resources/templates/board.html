@@ -18,7 +18,7 @@
                 <span th:switch="${Cells[row][column].getValue()}">
 
                     <td th:case="-1">
-                         <img class="cell-hoverable" src="/images/bomb.png"/>
+                         <img class="cell" src="/images/bomb.png"/>
                     </td> 
                     <td th:case="0"><img class="cell" src="/images/block_clicked.png"/></td>
                     <td th:case="1"><img class="cell" src="/images/one.png"/></td>
