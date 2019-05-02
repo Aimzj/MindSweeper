@@ -36,7 +36,7 @@
                 <td th:if="${isEnd == false}">
                     <img 
                         class="cell"
-                        th:src="${Cells[row][column].getValue() != 9 ? '/images/block.png' : '/images/flag.png'}"
+                        th:src="${Cells[row][column].flag ? '/images/flag.png' : '/images/block.png'}"
                         th:onclick="'testFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\');'"
                         th:oncontextmenu ="'flagFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\'); return false;'"
                     />

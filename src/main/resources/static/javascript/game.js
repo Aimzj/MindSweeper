@@ -20,7 +20,6 @@ function testFunction(id, row1, col1){
     .catch(function() {});
 }
 
-<<<<<<< HEAD
 function flagFunction(id, row1, col1){
     console.log(row1);
     console.log(col1);
@@ -39,7 +38,8 @@ function flagFunction(id, row1, col1){
         location.reload(true);
     })
     .catch(function() {});
-=======
+}
+
 function postUser(){
     user = document.getElementById("username").value;
 
@@ -49,5 +49,4 @@ function postUser(){
     
     console.log(user);
     
->>>>>>> 71a5d0b50520e7da719d76d2efd99044928e686d
 }

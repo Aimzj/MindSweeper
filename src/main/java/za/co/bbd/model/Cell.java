@@ -9,5 +9,6 @@ import java.util.Map;
 public class Cell {
     public boolean isClicked;
     public int value;
-    public Map<Integer ,Integer> position = new HashMap<Integer,Integer>();
+    public boolean flag;
+    public Map<Integer, Integer> position = new HashMap<Integer, Integer>();
 }

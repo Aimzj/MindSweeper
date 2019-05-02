@@ -103,18 +103,13 @@ public class Board {
     }
 
     public void setFlag(int x, int y) {
-        if (Cells[y][x].getValue() == 9)
-            Cells[y][x].setValue(0);
-        else
-            Cells[y][x].setValue(9);
+        Cells[y][x].setFlag(!Cells[y][x].flag);
     }
 
     public void openSpace(int x, int y) {
         // TODO: add a variable to check if space has already been opened
         System.out.println(x + "-------------");
         System.out.println(y + "-------------");
-        if (Cells[y][x].getValue() == 9)
-            Cells[y][x].setValue(0);
         if (!Cells[y][x].isClicked()) {
             if (Cells[y][x].getValue() == -1) {
                 // End Game
