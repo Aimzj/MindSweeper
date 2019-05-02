@@ -10,12 +10,19 @@ public class Board {
     public final Integer Y_SIZE = 16;
     public final Integer NUM_BOMBS = 25;
     final Integer BOMB_CHANCE = 8;
+    final Integer TOTAL_CELLS = X_SIZE*Y_SIZE;
+
+    private Integer totalClicked;
 
     public Boolean isEndGame;
+
+    public Boolean hasWonGame;
 
     public Board() {
         Cells = new Cell[Y_SIZE][X_SIZE];
         isEndGame = false;
+        hasWonGame = false;
+        totalClicked = 0;
         InitialiseBoard();
     }
 
@@ -131,12 +138,28 @@ public class Board {
                 Cells[row][column].setClicked(true);
                 // Open Neighbours
                 openNeighbours(column, row);
+                totalClicked++;
             } else {
                 // Display behind
                 Cells[row][column].setClicked(true);
+                totalClicked++;
             }
         }
 
+        if(hasWon())
+        {
+            hasWonGame = true;
+            System.out.println("YOU WON!");
+        }
+
+    }
+
+    private Boolean hasWon(){
+        if(TOTAL_CELLS - totalClicked == NUM_BOMBS){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     public void openNeighbours(int column, int row) {

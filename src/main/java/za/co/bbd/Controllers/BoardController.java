@@ -38,6 +38,7 @@ public class BoardController {
         model.addAttribute("id", game.getId());
         model.addAttribute("isEnd", board.isEndGame);    
         model.addAttribute("Cells", board.Cells);
+        model.addAttribute("hasWon", board.hasWonGame);
 
         return "board";
     }

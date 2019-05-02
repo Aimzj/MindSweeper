@@ -64,3 +64,12 @@ p {
     height: 0%;
     font-size: 0%;
 }
+
+.gameOver{
+    position: fixed;
+        left: 0;
+        bottom: 4%;
+        width: 100%;
+        color: white !important;
+        text-align: center;
+}

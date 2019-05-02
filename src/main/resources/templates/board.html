@@ -14,7 +14,6 @@
         <p id="idNum" class="invisible" th:text="${id}"></p>
         <span th:if="${isEnd == true}" >
                 <img onload="endGame();" src="/images/block.png" class="invisible"></img>
-                
         </span>
 
     <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">
@@ -60,18 +59,19 @@
                 </td>
 
             </span>
-
-<!--            <span th:if="${isEnd == true}">-->
-<!--                <span th:if="${Cells[row][column].getValue() == -1}">-->
-<!--                    <td><img class="cell" src="/images/bomb.png"/></td>-->
-<!--                </span>-->
-<!--            </span>-->
         </tr>
         <br/>
     </span>
     <br>
     <br>
     <a href="/"><button type="submit" class="btn btn-primary">Restart</button></a>
+        <th:block th:if="${hasWon==true}">
+            <h1 class="gameOver">You Won!</h1>
+        </th:block>
+        <th:block th:if="${isEnd==true}">
+            <h1 class="gameOver">Game Over, NOOB!</h1>
+        </th:block>
+
 </body>
 <div class="footer">
     <p>Made with <span style="color: #e25555;">&hearts;</span> by the MindSweeper team</p>
