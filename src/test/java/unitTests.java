@@ -18,6 +18,22 @@ public class unitTests {
     }
 
     @Test
+    public void BombTotalTest(){
+        Board board = new Board();
+
+        int bombCount = 0;
+
+        for(int row=0; row<board.Y_SIZE; row++) {
+            for(int column=0; column<board.X_SIZE; column++){
+                if(board.Cells[row][column].getValue()==-1){
+                    bombCount++;
+                }
+            }
+        }
+        assertEquals(java.util.Optional.of(board.NUM_BOMBS), java.util.Optional.of(bombCount));
+    }
+
+    @Test
     public void GameEndsOnBombClickTest(){
         Board board = new Board();
 
