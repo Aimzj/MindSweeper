@@ -2,6 +2,11 @@
 .cell{
     width: 2%;
     height: auto;
+}
+
+.cell-hoverable{
+    width: 2%;
+    height: auto;
     cursor: pointer;
 }
 

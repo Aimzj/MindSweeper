@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="/css/board.css">
     <script type="text/javascript" src="/javascript/game.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/axios.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>MineSweeper</title>
 
@@ -18,7 +18,7 @@
                 <span th:switch="${Cells[row][column].getValue()}">
 
                     <td th:case="-1">
-                         <img class="cell" src="/images/bomb.png"/>
+                         <img class="cell-hoverable" src="/images/bomb.png"/>
                     </td> 
                     <td th:case="0"><img class="cell" src="/images/block_clicked.png"/></td>
                     <td th:case="1"><img class="cell" src="/images/one.png"/></td>
@@ -35,14 +35,14 @@
             <span th:unless="${Cells[row][column].isClicked() == true}">
                 <td th:if="${isEnd == false}">
                     <img 
-                        class="cell"
+                        class="cell-hoverable"
                         th:src="${Cells[row][column].flag ? '/images/flag.png' : '/images/block.png'}"
                         th:onclick="'testFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\');'"
                         th:oncontextmenu ="'flagFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\'); return false;'"
                     />
                 </td>
                 <td th:unless="${isEnd == false}">
-                    <img class="cell" src="/images/block.png"/>
+                    <img class="cell-hoverable" src="/images/block.png"/>
                 </td>
 
             </span>
