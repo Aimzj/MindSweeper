@@ -3,53 +3,11 @@
 <head>
     <title>MindSweeper</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <script src="/javascript/jquery.min.js"></script>
+    <script src="/javascript/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascript/game.js"></script>
 
-    <style>    
-        .btn-primary {
-            border-radius: 5px;
-            background-color:rgb(5, 226, 255);
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-        }
-
-        .btn-primary:hover {
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);                
-        }
-
-        div {
-            text-align:center;
-            margin-top: 4%;
-        }
-
-        body {
-            background-color: rgb(53, 53, 53);
-        }
-
-        h1 {
-            color: white;
-            text-align: center;
-            margin-top: 3%;
-        }
-
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            color: white;
-            text-align: center;
-        }
-
-    </style>
-    
 </head>
 <body>
 
@@ -58,15 +16,18 @@
 </h1>
 
 <div class="container">
-    <div class="form-group">
-        <input type="text" id="username" placeholder="Player Name">
-        </br>
-        </br>
+    <div class="form-group">       
+        <form action="/games/start" method="post">    
+            <input type="text" id="username" name="username" placeholder="Player Name">
+            <br>  
+            <br>                
+            <button type="submit" class="btn btn-primary">Start Game</button>
+            <br>
+            <br>
+        </form> 
         <a href="/highscores"><button type="submit" class="btn btn-primary">View Highscores</button></a>
-        <a href="/games/start"><button type="submit" class="btn btn-primary">Start Game</button></a>
     </div>
 </div>
-
 
 
 </body>
