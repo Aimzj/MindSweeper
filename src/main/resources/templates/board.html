@@ -34,7 +34,12 @@
 
             <span th:unless="${Cells[row][column].isClicked() == true}">
                 <td th:if="${isEnd == false}">
-                    <img class="cell" src="/images/block.png" th:onclick="'testFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\');'"/>
+                    <img 
+                        class="cell"
+                        th:src="${Cells[row][column].getValue() != 9 ? '/images/block.png' : '/images/flag.png'}"
+                        th:onclick="'testFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\');'"
+                        th:oncontextmenu ="'flagFunction(\'' + ${id}+ '\',\'' + ${row}+ '\',\'' + ${column} + '\'); return false;'"
+                    />
                 </td>
                 <td th:unless="${isEnd == false}">
                     <img class="cell" src="/images/block.png"/>
