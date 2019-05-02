@@ -34,6 +34,21 @@ public class unitTests {
     }
 
     @Test
+    public void GameEndIsFalseOnStartTest(){
+        Board board = new Board();
+
+        assertFalse(board.isEndGame);
+    }
+
+//    @Test
+//    public void OpenSpaceTest(){
+//        Board board = new Board();
+//
+//        //reset the board values
+//
+//    }
+
+    @Test
     public void GameEndsOnBombClickTest(){
         Board board = new Board();
 

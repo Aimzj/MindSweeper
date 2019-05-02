@@ -117,39 +117,38 @@ public class Board {
         Cells[y][x].setFlag(!Cells[y][x].flag);
     }
 
-    public void openSpace(int x, int y) {
-        // TODO: add a variable to check if space has already been opened
-        System.out.println(x + "-------------");
-        System.out.println(y + "-------------");
-        if (!Cells[y][x].isClicked()) {
-            if (Cells[y][x].getValue() == -1) {
+    public void openSpace(int column, int row) {
+        System.out.println(column + "-------------");
+        System.out.println(row + "-------------");
+        if (!Cells[row][column].isClicked()) {
+            if (Cells[row][column].getValue() == -1) {
                 // End Game
-                Cells[y][x].setClicked(true);
+                Cells[row][column].setClicked(true);
                 setBombsClicked();
                 isEndGame = true;
-            } else if (Cells[y][x].getValue() == 0) {
+            }else if (Cells[row][column].getValue() == 0) {
                 // DisplayBehind
-                Cells[y][x].setClicked(true);
+                Cells[row][column].setClicked(true);
                 // Open Neighbours
-                openNeighbours(x, y);
+                openNeighbours(column, row);
             } else {
                 // Display behind
-                Cells[y][x].setClicked(true);
+                Cells[row][column].setClicked(true);
             }
         }
 
     }
 
-    public void openNeighbours(int x, int y) {
+    public void openNeighbours(int column, int row) {
 
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
+        for (int c = -1; c < 2; c++) {
+            for (int r = -1; r < 2; r++) {
 
                 // Check if within bounds
-                if (x + i >= 0 && x + i < X_SIZE) {
-                    if (y + j >= 0 && y + j < Y_SIZE) {
-                        if (Math.abs(x) != Math.abs(y))
-                            openSpace(x + i, y + j);
+                if (column + c >= 0 && column + c < X_SIZE) {
+                    if (row + r >= 0 && row + r < Y_SIZE) {
+                        if (Math.abs(column) != Math.abs(row))
+                            openSpace(column + c, row + r);
                     }
                 }
             }

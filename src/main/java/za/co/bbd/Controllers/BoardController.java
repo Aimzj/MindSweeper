@@ -3,6 +3,7 @@ package za.co.bbd.Controllers;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,13 +44,14 @@ public class BoardController {
 
     @PostMapping("/game/{gameId}")
     public ResponseEntity PostData(@PathVariable("gameId") String id, @RequestParam int row, @RequestParam int column)
-            throws IllegalArgumentException {
+            throws IllegalArgumentException, InterruptedException {
 
         System.out.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAS");
         Game game = repository.findById(id);
         Board board = game.getBoard();
 
         board.openSpace(column, row);
+        Thread.sleep(400);
 
         return new ResponseEntity<String>("Success", HttpStatus.OK);
     }
