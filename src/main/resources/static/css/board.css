@@ -51,3 +51,10 @@ p {
     color: white !important;
     text-align: center;
 }
+
+.invisible
+{
+    width: 0%;
+    height: 0%;
+    font-size: 0%;
+}

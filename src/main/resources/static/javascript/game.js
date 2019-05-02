@@ -5,8 +5,6 @@ function testFunction(id, row1, col1){
     var formData = new FormData();
     formData.set('row', row1);
     formData.set('column', col1);
-
-    location.reload(true);
     
     axios({
         method: 'POST',
@@ -18,6 +16,7 @@ function testFunction(id, row1, col1){
         location.reload(true);
     })
     .catch(function() {});
+
 }
 
 function postUser(){
@@ -29,4 +28,16 @@ function postUser(){
     
     console.log(user);
     
+}
+
+function endGame()
+{
+    console.log("hello");
+    var id = document.getElementById("idNum").textContent
+    $.post( id+"/end/");
+}
+
+function endgame2()
+{
+    location.reload(true);
 }
