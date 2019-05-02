@@ -1,11 +1,16 @@
 package za.co.bbd.Controllers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+
+import antlr.collections.List;
 import za.co.bbd.db.FakeGameRepository;
 import za.co.bbd.db.Game;
 import za.co.bbd.model.Board;
@@ -67,7 +72,15 @@ public class BoardController {
     }
 
     @GetMapping("/highscores")
-    public void Highscores() {
+
+    public String Highscores(Model model) {
+
+        ArrayList<Game> games = repository.find();
+
+        model.addAttribute("games", games);
+
+        return "highscores";
+
     }
 
 }
