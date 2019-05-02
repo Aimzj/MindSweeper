@@ -6,6 +6,7 @@ import lombok.Setter;
 import za.co.bbd.model.Board;
 
 import java.time.Instant;
+import java.time.Duration;
 
 @Getter
 @Setter
@@ -19,6 +20,8 @@ public class Game {
     private Instant startTime;
 
     private Instant endTime;
+
+    private Duration score;
 
     private final Board board;
 
@@ -35,6 +38,15 @@ public class Game {
 
         //save in repo
 
+    }
+    
+    public void calculateScore()
+    {
+        if(endTime != null)
+        {
+            score= Duration.between(endTime, startTime);
+        }
+        
     }
 }
 

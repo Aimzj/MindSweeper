@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 import za.co.bbd.db.FakeGameRepository;
@@ -23,16 +24,16 @@ public class GameController {
     private FakeGameRepository gameRepository;
 
     //creates game and redirects to /game/{id}
-    @GetMapping("/start")
-    public RedirectView recordStartDate(GameCheckpoint checkpoint){
+    @PostMapping("/start")
+    public RedirectView recordStartDate(@RequestParam String username){
         try {
-            LOG.debug(checkpoint.toString());
+            LOG.debug(username.toString());
 
-            Game game = new Game(checkpoint.getUser(), Instant.now());
+            Game game = new Game(username, Instant.now());
 
             game =gameRepository.save(game);
 
-            LOG.info("Date has been saved for user {}", checkpoint.getUser());
+            LOG.info("Date has been saved for user {}", username);
 
             String gameId = game.getId();
             return new RedirectView("/game/"+ gameId);

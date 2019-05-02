@@ -3,7 +3,7 @@
 <head>
     <title>MindSweeper</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />    
-    <link rel="stylesheet" type="text/css" href="css/general.css">
+    <link rel="stylesheet" type="text/css" href="/css/general.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     
@@ -14,9 +14,14 @@
     Highscores
 </h1>
 
-<p>
-    Display highscores
-</p>
+
+
+<span th:each=" game: ${games}">
+        <p th:text="${game.username}"> </p>
+        <p th:text="${game.score}"> </p>
+
+</span>
+
 
 <div class="container">
     <div class="form-group">
