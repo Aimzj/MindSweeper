@@ -44,7 +44,7 @@ public class Game {
     {
         if(endTime != null)
         {
-            score= Duration.between(endTime, startTime);
+            score = Duration.between(endTime, startTime);
         }
         
     }

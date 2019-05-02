@@ -1,5 +1,6 @@
 package za.co.bbd.Controllers;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -35,15 +36,14 @@ public class BoardController {
         model.addAttribute("ysize", board.Y_SIZE);
         model.addAttribute("id", game.getId());
         model.addAttribute("isEnd", board.isEndGame);
-
+    
         model.addAttribute("Cells", board.Cells);
 
         return "board";
     }
 
     @PostMapping("/game/{gameId}")
-    public ResponseEntity PostData(@PathVariable("gameId") String id, @RequestParam int row, @RequestParam int column)
-            throws IllegalArgumentException {
+    public RedirectView PostData(@PathVariable("gameId") String id, @RequestParam int row, @RequestParam int column)throws IllegalArgumentException, InterruptedException {
 
         System.out.println("YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAS");
         Game game = repository.findById(id);
@@ -51,7 +51,9 @@ public class BoardController {
 
         board.openSpace(column, row);
 
-        return new ResponseEntity<String>("Success", HttpStatus.OK);
+    
+        return new RedirectView("/game/"+id);
+        
     }
 
     @PutMapping("/game/{gameId}")
@@ -65,6 +67,20 @@ public class BoardController {
         board.setFlag(column, row);
 
         return new ResponseEntity<String>("Success", HttpStatus.OK);
+    }
+
+    @PostMapping("game/{id}/end")
+    public RedirectView recordEndDate(@PathVariable("id") String gameId){
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+
+        Game opGame = repository.findById(gameId);
+            opGame.setEndTime(Instant.now());
+            opGame.calculateScore();
+            repository.save(opGame);
+
+            return new RedirectView("/game/"+gameId);
+       
+
     }
 
     @GetMapping("/about")
