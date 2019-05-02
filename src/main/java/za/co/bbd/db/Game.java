@@ -21,7 +21,7 @@ public class Game {
 
     private Instant endTime;
 
-    private Duration score;
+    private long score;
 
     private final Board board;
 
@@ -44,7 +44,8 @@ public class Game {
     {
         if(endTime != null)
         {
-            score = Duration.between(endTime, startTime);
+            Duration scoreval = Duration.between(startTime, endTime);
+            score = scoreval.toMillis()/(1000);
         }
         
     }

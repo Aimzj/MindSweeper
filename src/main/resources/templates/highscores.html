@@ -13,12 +13,19 @@
 <h1>
     Highscores
 </h1>
+<table style="width:100%">
+    <tr>
+        <th>Username</th>
+        <th>Score</th> 
+    </tr>
+    <span th:each=" game: ${games}">
+        <tr> 
+        <th th:text="${game.username}"> </th>
+        <th th:text="${game.score}"> </th>
+        </tr>
+    </span>
+</table>
 
-<span th:each=" game: ${games}">
-        <p th:text="${game.username}"> </p>
-        <p th:text="${game.score}"> </p>
-
-</span>
 
 
 <div class="container">
