@@ -8,7 +8,7 @@ public class Board {
 
     public final Integer X_SIZE = 16;
     public final Integer Y_SIZE = 16;
-    public final Integer NUM_BOMBS = 5;
+    public final Integer NUM_BOMBS = 25;
     final Integer BOMB_CHANCE = 8;
     final Integer TOTAL_CELLS = X_SIZE*Y_SIZE;
 
@@ -137,7 +137,7 @@ public class Board {
                 // DisplayBehind
                 Cells[row][column].setClicked(true);
                 // Open Neighbours
-                openNeighbours(column, row);
+                blankClicked(column, row);
                 totalClicked++;
             } else {
                 // Display behind
@@ -162,7 +162,154 @@ public class Board {
         }
     }
 
-    public void openNeighbours(int column, int row) {
+    private void OpenSurroundingNumberedBlocks(int column, int row){
+        // check above
+        if (row != Y_SIZE - 1) {
+            if (Cells[row + 1][column].getValue() >0){
+                if(!Cells[row+1][column].isClicked){
+                    Cells[row+1][column].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+
+        // check below
+        if (row != 0) {
+            if (Cells[row - 1][column].getValue() >0){
+                if(!Cells[row-1][column].isClicked){
+                    Cells[row-1][column].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+
+        // check left
+        if (column != 0) {
+            if (Cells[row][column - 1].getValue() >0){
+                if(!Cells[row][column-1].isClicked){
+                    Cells[row][column-1].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+
+        // check right
+        if (column != X_SIZE - 1) {
+            if (Cells[row][column + 1].getValue() >0){
+                if(!Cells[row][column+1].isClicked){
+                    Cells[row][column+1].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+
+        // check upper left
+        if (column != 0 && row != 0) {
+            if (Cells[row - 1][column - 1].getValue() >0){
+                if(!Cells[row-1][column-1].isClicked){
+                    Cells[row-1][column-1].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+
+        // check upper right
+        if (column != X_SIZE - 1 && row != 0) {
+            if (Cells[row - 1][column + 1].getValue() >0){
+                if(!Cells[row-1][column+1].isClicked){
+                    Cells[row-1][column+1].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+
+        // check lower left
+        if (column != 0 && row != Y_SIZE - 1) {
+            if (Cells[row + 1][column - 1].getValue() >0){
+                if(!Cells[row+1][column-1].isClicked){
+                    Cells[row+1][column-1].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+
+        // check lower right
+        if (column != X_SIZE - 1 && row != Y_SIZE - 1) {
+            if (Cells[row + 1][column + 1].getValue() >0){
+                if(!Cells[row+1][column+1].isClicked){
+                    Cells[row+1][column+1].setClicked(true);
+                    totalClicked++;
+                }
+
+            }
+        }
+    }
+
+    public void blankClicked(int column, int row){
+        //check for unclicked number boxes in surrounding space and open them
+        OpenSurroundingNumberedBlocks(column, row);
+
+        //check for any hidden empty blocks that haven't been clicked
+        // check above
+        if (row != Y_SIZE - 1) {
+            if (Cells[row + 1][column].getValue() ==0){
+                if(!Cells[row+1][column].isClicked){
+                    Cells[row+1][column].setClicked(true);
+                    totalClicked++;
+                    blankClicked(column, row+1);
+
+                }
+
+            }
+        }
+
+        // check below
+         if (row != 0) {
+            if (Cells[row - 1][column].getValue() ==0){
+                if(!Cells[row-1][column].isClicked){
+                    Cells[row-1][column].setClicked(true);
+                    totalClicked++;
+                    blankClicked(column, row-1);
+
+                }
+
+            }
+        }
+
+        // check left
+         if (column != 0) {
+            if (Cells[row][column - 1].getValue() ==0){
+                if(!Cells[row][column-1].isClicked){
+                    Cells[row][column-1].setClicked(true);
+                    totalClicked++;
+                    blankClicked(column-1, row);
+                }
+
+            }
+        }
+
+        // check right
+         if (column != X_SIZE - 1) {
+            if (Cells[row][column + 1].getValue() ==0){
+                if(!Cells[row][column+1].isClicked){
+                    Cells[row][column+1].setClicked(true);
+                    totalClicked++;
+                    blankClicked(column+1, row);
+                }
+
+            }
+        }
+
+    }
+
+   /* public void openNeighbours(int column, int row) {
 
         for (int c = -1; c < 2; c++) {
             for (int r = -1; r < 2; r++) {
@@ -176,7 +323,7 @@ public class Board {
                 }
             }
         }
-    }
+    }*/
 
     public void setBombsClicked() {
         for (Integer x = 0; x < X_SIZE; x++) {
