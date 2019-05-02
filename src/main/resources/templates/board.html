@@ -10,16 +10,30 @@
     <title>MineSweeper</title>
 
 </head>
-<body id="theBody">
+<body id="theBody" >
+        <p id="idNum" class="invisible" th:text="${id}"></p>
+        <span th:if="${isEnd == true}" >
+                <img onload="endGame();" src="/images/block.png" class="invisible"></img>
+                
+        </span>
+
     <span th:each="row : ${#numbers.sequence( 0, ysize-1)}">
         <tr th:each="column : ${#numbers.sequence( 0, xsize-1)}">
             
+           
+
             <span th:if="${Cells[row][column].isClicked() == true}">
                 <span th:switch="${Cells[row][column].getValue()}">
 
-                    <td th:case="-1">
-                         <img class="cell" src="/images/bomb.png"/>
-                    </td> 
+                    <span th:case="-1">
+                        <td th:if="${isEnd == false}">
+                             <img class="cell" src="/images/bomb.png" onload="endgame2();"/>
+                        </td>
+                        <td th:unless="${isEnd == false}">
+                                <img class="cell" src="/images/bomb.png" />
+                        </td>
+                         
+                    </span> 
                     <td th:case="0"><img class="cell" src="/images/block_clicked.png"/></td>
                     <td th:case="1"><img class="cell" src="/images/one.png"/></td>
                     <td th:case="2"><img class="cell" src="/images/two.png"/></td>

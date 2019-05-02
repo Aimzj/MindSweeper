@@ -12,7 +12,7 @@
 
 .btn-primary {
     border-radius: 5px;
-    background-color:rgb(5, 226, 255);
+    background-color:rgb(0, 174, 255);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -24,6 +24,7 @@
 
 .btn-primary:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color:rgb(0, 95, 139);    
 }
 
 div {
@@ -34,7 +35,7 @@ div {
 body {
     background-color: rgb(53, 53, 53);
     text-align: center;
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 h1 {
@@ -55,4 +56,11 @@ p {
     width: 100%;
     color: white !important;
     text-align: center;
+}
+
+.invisible
+{
+    width: 0%;
+    height: 0%;
+    font-size: 0%;
 }
