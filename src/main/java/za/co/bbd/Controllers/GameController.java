@@ -20,11 +20,11 @@ import za.co.bbd.db.Game;
 import za.co.bbd.model.Board;
 
 @Controller
-public class BoardController {
+public class GameController {
 
     FakeGameRepository repository;
 
-    BoardController(FakeGameRepository repository) {
+    GameController(FakeGameRepository repository) {
         this.repository = repository;
     }
 
@@ -36,7 +36,7 @@ public class BoardController {
         model.addAttribute("xsize", board.X_SIZE);
         model.addAttribute("ysize", board.Y_SIZE);
         model.addAttribute("id", game.getId());
-        model.addAttribute("isEnd", board.isEndGame);    
+        model.addAttribute("isEnd", board.isEndGame);
         model.addAttribute("Cells", board.Cells);
         model.addAttribute("hasWon", board.hasWonGame);
 

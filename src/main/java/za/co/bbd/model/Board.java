@@ -1,7 +1,10 @@
 package za.co.bbd.model;
 
+import lombok.Data;
+
 import java.util.Random;
 
+@Data
 public class Board {
 
     public Cell[][] Cells;

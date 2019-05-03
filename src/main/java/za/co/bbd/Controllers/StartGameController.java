@@ -1,11 +1,8 @@
-package za.co.bbd.api;
+package za.co.bbd.Controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,15 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 import za.co.bbd.db.FakeGameRepository;
 import za.co.bbd.db.Game;
-import za.co.bbd.model.GameCheckpoint;
 
 import java.time.Instant;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("games")
-public class GameController {
-    private static final Logger LOG = LoggerFactory.getLogger(GameController.class);
+public class StartGameController {
+    private static final Logger LOG = LoggerFactory.getLogger(StartGameController.class);
 
     @Autowired
     private FakeGameRepository gameRepository;
